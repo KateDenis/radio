@@ -6,30 +6,108 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RadioTest {
+    Radio rd = new Radio();
 
     @Test
-    public void myTest() {
-        Radio rd = new Radio();
-        rd.turnOn("Kate");
-        System.out.println(rd.getCurrentVolume());
-    }
-
-    @Test
-    public void myTest2() {
-        Radio rd = new Radio();
-        rd.turnOn("Kate");
-        rd.setCurrentStation(7);
-        int expected = 7;
+    public void shouldIncreaseStationOverMax() {
+        rd.increaseStation(9);
+        int expected = 0;
         int actual = rd.getCurrentStation();
         assertEquals(expected, actual);
     }
 
     @Test
-    public void myTest3(){
-        Radio rd = new Radio();
-        rd.turnOn("Kate");
+    public void shouldIncreaseStation() {
+        rd.increaseStation(7);
+        int expected = 8;
+        int actual = rd.getCurrentStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldDecreaseStation() {
+        rd.decreaseStation(5);
+        int expected = 4;
+        int actual = rd.getCurrentStation();
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void shouldDecreaseStationOverMin() {
+        rd.decreaseStation(0);
+        int expected = 9;
+        int actual = rd.getCurrentStation();
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void shouldSetCurrentStation() {
+        rd.setCurrentStation(1);
+        int expected = 1;
+        int actual = rd.getCurrentStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetCurrentStationOverMin() {
+        rd.setCurrentStation(-1);
+        int expected = 0;
+        int actual = rd.getCurrentStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetCurrentStationOverMax() {
+        rd.setCurrentStation(10);
+        int expected = 0;
+        int actual = rd.getCurrentStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetToMax(){
         rd.setToMax();
         int expected = 10;
+        int actual = rd.getCurrentVolume();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetToMin(){
+        rd.setToMin();
+        int expected = 0;
+        int actual = rd.getCurrentVolume();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldIncreaseVolume(){
+        rd.increaseVolume(6);
+        int expected = 7;
+        int actual = rd.getCurrentVolume();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldIncreaseVolumeOverMax(){
+        rd.increaseVolume(10);
+        int expected = 10;
+        int actual = rd.getCurrentVolume();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldDecreaseVolume(){
+        rd.decreaseVolume(5);
+        int expected = 4;
+        int actual = rd.getCurrentVolume();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldDecreaseVolumeOverMin(){
+        rd.decreaseVolume(0);
+        int expected = 0;
         int actual = rd.getCurrentVolume();
         assertEquals(expected, actual);
     }
