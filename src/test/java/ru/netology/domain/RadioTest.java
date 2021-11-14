@@ -10,9 +10,16 @@ class RadioTest {
 
     @Test
     public void shouldIncreaseStationOverMax() {
-        rd.increaseStation(9);
+        rd.increaseStation(99);
         int expected = 0;
         int actual = rd.getCurrentStation();
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void shouldInitCountStationConstructor() {
+        int expected = 7;
+        Radio rd = new Radio(expected);
+        int actual = rd.getCountStation();
         assertEquals(expected, actual);
     }
 
@@ -67,7 +74,7 @@ class RadioTest {
     @Test
     public void shouldSetToMax() {
         rd.setToMax();
-        int expected = 10;
+        int expected = 100;
         int actual = rd.getCurrentVolume();
         assertEquals(expected, actual);
     }
@@ -90,8 +97,8 @@ class RadioTest {
 
     @Test
     public void shouldIncreaseVolumeOverMax() {
-        rd.increaseVolume(10);
-        int expected = 10;
+        rd.increaseVolume(100);
+        int expected = 100;
         int actual = rd.getCurrentVolume();
         assertEquals(expected, actual);
     }
